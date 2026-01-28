@@ -28,6 +28,10 @@
       <el-icon><Document /></el-icon>
       <span>canvas</span>
     </el-menu-item>
+    <el-menu-item @click="selectMenu('3-2')" index="3-2">
+      <el-icon><Document /></el-icon>
+      <span>three</span>
+    </el-menu-item>
   </el-sub-menu>
 </template>
 <script lang="ts" setup>
@@ -63,7 +67,11 @@ const selectMenu = (index: string) => {
     case "3-1": {
       console.log("canvas");
       router.push("/demo/canvas");
-      return;
+      break;
+    }
+    case "3-2": {
+      router.push("/demo/three");
+      break;
     }
   }
 };

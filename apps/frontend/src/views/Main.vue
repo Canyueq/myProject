@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 100%">
+  <el-container style="width: 100%; height: 100%">
     <el-aside style="background-color: black">
       <aside-bar />
     </el-aside>
@@ -7,10 +7,10 @@
       <el-header style="padding: 0">
         <header-bar />
       </el-header>
-      <el-main style="padding: 0">
+      <el-main style="width: 100%; height: 100%; padding: 0">
         <router-view />
       </el-main>
-      <el-footer style="padding: 0">
+      <el-footer style="padding: 0; background-color: black; color: white">
         <footer-bar />
       </el-footer>
     </el-container>

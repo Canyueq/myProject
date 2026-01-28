@@ -9,16 +9,7 @@
     "dev:backend": "cd apps/backend && go run main.go",
     "dev": "concurrently \"pnpm dev:frontend\" \"pnpm dev:backend\""
   },
-  "dependencies": {
-    "@element-plus/icons-vue": "^2.3.2",
-    "axios": "^1.13.2",
-    "element-plus": "^2.13.1",
-    "humps": "^2.0.1",
-    "pinia": "^3.0.4",
-    "three": "~0.134.0",
-    "troisjs": "^0.3.4",
-    "vue-router": "^4.6.4"
-  },
+  "dependencies": {},
   "devDependencies": {
     "concurrently": "^9.2.1",
     "sass-embedded": "^1.97.3",

@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="justify-content: space-between">
     <div>uid:{{ userStore.uid }}</div>
-    <div>3</div>
+    <div style="padding: 10px">3</div>
   </div>
 </template>
 <script lang="ts" setup>

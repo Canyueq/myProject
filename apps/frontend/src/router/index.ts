@@ -36,6 +36,11 @@ const routes: RouteRecordRaw[] = [
             name: "Canvas",
             component: () => import("../views/demo/canvas/index.vue"),
           },
+          {
+            path: "three",
+            name: "Three",
+            component: () => import("../views/demo/three/index.vue"),
+          },
         ],
       },
     ],
