@@ -1,0 +1,34 @@
+# 忽略操作系统生成的文件
+.DS_Store
+Thumbs.db
+
+# 忽略 IDE / 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 忽略日志和临时文件
+*.log
+tmp/
+temp/
+
+# 忽略 node_modules（Node.js 项目）
+node_modules/
+
+# 忽略 Python 缓存
+__pycache__/
+*.pyc
+.env
+
+# 忽略编译产物（C/C++、Go 等）
+*.o
+*.exe
+*.out
+build/
+dist/
+
+# 忽略 macOS 资源派生文件
+._*
+.Spotlight-V100
+.Trashes
