@@ -1,9 +1,8 @@
 import { WebGLRenderer } from "three";
 
-function createRenderer() {
+const createRenderer = () => {
   const renderer = new WebGLRenderer();
-
   return renderer;
-}
+};
 
 export { createRenderer };
