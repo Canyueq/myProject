@@ -11,7 +11,7 @@
     <el-card style="max-width: 480px; height: 600px">
       <template #header>
         <img
-          src="../../public/37.jpg"
+          src="../../assets/public/37.jpg"
           style="max-height: 200px; width: 100%; padding: 0; opacity: 50%"
         />
       </template>

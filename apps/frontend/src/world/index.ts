@@ -1,5 +1,4 @@
 import { Color } from "three";
-import type { Position } from "../components/light";
 import type {
   PerspectiveCamera,
   WebGLRenderer,
@@ -7,6 +6,7 @@ import type {
   Object3DEventMap,
   Mesh,
   Light,
+  Matrix4,
 } from "three";
 import { createCamera } from "../components/camera";
 import { createCube } from "../components/cube";
@@ -15,6 +15,7 @@ import { createLights } from "../components/light";
 
 import { createRenderer } from "../systems/renderer";
 import { Resizer } from "../systems/Resizer";
+import { Loop } from "../systems/Loop";
 
 class World {
   private camera: PerspectiveCamera;
@@ -23,32 +24,44 @@ class World {
   private cube: Mesh; // ✅ 添加类型
   private light: Light; // ✅ 添加类型
   private resizer: Resizer;
+  #loop: Loop;
   constructor(
     container: HTMLElement,
-    lightPositon?: Position,
-    rotation?: Position,
+    sceneSize: string = "1-2",
+    matrix: Matrix4,
   ) {
+    console.log("sceneSize", sceneSize);
+    const [h, w] = sceneSize.split("-");
     this.camera = createCamera();
     this.scene = createScene();
     this.renderer = createRenderer();
+    this.#loop = new Loop(this.camera, this.scene, this.renderer);
     container.append(this.renderer.domElement);
-    this.scene.background = new Color("red");
-    this.cube = createCube(lightPositon);
-    this.light = createLights(lightPositon);
+    this.scene.background = new Color("skyblue");
+
+    this.cube = createCube(matrix);
+    this.light = createLights();
+
+    this.#loop.updataTables.push(this.cube, this.camera);
 
     this.scene.add(this.cube, this.light);
 
     this.resizer = new Resizer(container, this.camera, this.renderer);
-    // Set the camera's aspect ratio to match the container's proportions
-    this.camera.aspect = container.clientWidth / container.clientHeight;
 
+    // this.resizer.onResize = () => {
+    //   this.render();
+    // };
+
+    // Set the camera's aspect ratio to match the container's proportions
+    this.camera.aspect = ((w as unknown as number) /
+      (h as unknown as number)) as number;
+    console.log("aspect", this.camera.aspect);
     // next, set the renderer to the same size as our container element
-    this.renderer.setSize(container.clientWidth, container.clientHeight);
+    // this.renderer.setSize(container.clientWidth, container.clientHeight);
 
     // finally, set the pixel ratio to ensure our scene will look good on mobile devices
     this.renderer.setPixelRatio(window.devicePixelRatio);
   }
-
   render() {
     this.renderer.render(this.scene, this.camera);
   }
@@ -77,6 +90,13 @@ class World {
     this.cube = null!;
     this.light = null!;
     this.resizer = null!;
+  }
+
+  start() {
+    this.#loop.start();
+  }
+  stop() {
+    this.#loop.stop();
   }
 }
 

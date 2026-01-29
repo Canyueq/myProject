@@ -6,11 +6,18 @@ function createCamera() {
     1, // aspect ratio (dummy value)
     0.1, // near clipping plane
     100, // far clipping plane
-  );
+  ) as any;
 
   // move the camera back so we can view the scene
   camera.position.set(0, 0, 10);
-
+  camera.tick = (delta: number) => {
+    const x = (camera.position.x += 1 * delta) % 2;
+    const y = (camera.position.y += 1 * delta) % 2;
+    const z = (camera.position.z += 1 * delta) % 2;
+    camera.scale.x = x;
+    camera.scale.y = y;
+    camera.scale.z = z;
+  };
   return camera;
 }
 
