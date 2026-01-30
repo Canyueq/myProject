@@ -6,7 +6,7 @@ import {
   MathUtils,
   TextureLoader,
 } from "three";
-const createCube = (matrix: Matrix4) => {
+function createCube(matrix: Matrix4) {
   // create a geometry
   const geometry = new BoxGeometry(2, 2, 2);
 
@@ -46,20 +46,18 @@ const createCube = (matrix: Matrix4) => {
   };
 
   return cube;
-};
-const createMaterial = () => {
+}
+function createMaterial() {
   //创建纹理加载的实例
   const textureLoader = new TextureLoader();
   //加载纹理
-  const texture = textureLoader.load(
-    "apps/frontend/public/assets/textures/uv-test-bw.png",
-  );
+  const texture = textureLoader.load("/textures/uv-test-bw.png");
   // create a "standard" material
-  const material = new MeshStandardMaterial({ map: texture });
+  const material = new MeshStandardMaterial({ map: texture, color: "green" });
 
-  material.map = texture;
-
+  material.map = textureLoader.load("/textures/uv-test-col.png");
+  // console.log("材质", texture);
   return material;
-};
+}
 
 export { createCube, createMaterial };

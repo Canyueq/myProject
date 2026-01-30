@@ -11,7 +11,7 @@ class Loop {
   private camera: PerspectiveCamera;
   #scene: Scene<Object3DEventMap>;
   private renderer: WebGLRenderer;
-  updataTables: Array<any>;
+  updateTables: Array<any>;
   constructor(
     camera: PerspectiveCamera,
     scene: Scene<Object3DEventMap>,
@@ -20,7 +20,7 @@ class Loop {
     this.camera = camera;
     this.#scene = scene;
     this.renderer = renderer;
-    this.updataTables = [];
+    this.updateTables = [];
   }
   start() {
     this.renderer.setAnimationLoop(() => {
@@ -34,7 +34,7 @@ class Loop {
   }
   tick() {
     const delta = clock.getDelta();
-    for (let obj of this.updataTables) {
+    for (let obj of this.updateTables) {
       obj.tick(delta);
     }
   }
